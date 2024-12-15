@@ -21,7 +21,7 @@ Clone the github repository and enter DepMap-analysis directory with
     $ git clone https://github.com/qyyin0516/DepMap-analysis.git
     $ cd DepMap-analysis
   
-However, the folder `DepMap-analysis/dataset` is stored in Google Drive because of the file size limitations of GitHub. Please download the folder via https://drive.google.com/drive/folders/1_S_3W7ii5ZUFe-xiBjuYIZLoDur9wNZo?usp=sharing. Thank you! 
+However, the folder `DepMap-analysis/dataset` is stored in Google Drive because of the file size limitations of GitHub. Please download the folder via https://drive.google.com/drive/folders/1CWI-P40QcIpNmYxleX5y-6KvhfznYadg?usp=sharing. Thank you! 
 
 ## Usage
 The input of 
