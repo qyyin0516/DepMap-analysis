@@ -14,3 +14,14 @@ The models are built with Python 3 (>= 3.9.2) with the following packages:
 * tensorflow >= 2.9.0
 * scikit-learn >= 1.0.2
 * networkx >= 2.6.3
+
+## Installation
+Clone the github repository and enter DepMap-analysis directory with
+
+    $ git clone https://github.com/qyyin0516/DepMap-analysis.git
+    $ cd DepMap-analysis
+  
+However, the folder `DepMap-analysis/dataset` is stored in Google Drive because of the file size limitations of GitHub. Please download the folder via XXX. Thank you! 
+
+## Usage
+The input of 
