@@ -52,7 +52,7 @@ The list below is the options for `code/mutation/main.py`.
     --encoded_dim                   the number of ARVs or the dimensions of the latent layer (optional, default: 1024)
     --n_hidden                      number of hidden layers of the neural network (optional, default: 3)
     --learning_rate                 learning rate (optional, default: 0.01)
-    --num_epochs                    epochs for training the neural network (optional, default: 100)
+    --num_epochs                    epochs for training the neural network (optional, default: 1000)
     --batch_size                    batch size (optional, default: 128)
     --alpha_binomial                penalty parameter for binomial distribution(optional, default: 0.001)
     --alpha_regularization          penalty parameter for regularization (optional, default: 0.1)
