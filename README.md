@@ -24,4 +24,26 @@ Clone the github repository and enter DepMap-analysis directory with
 However, the folder `DepMap-analysis/dataset` is stored in Google Drive because of the file size limitations of GitHub. Please download the folder via https://drive.google.com/drive/folders/1CWI-P40QcIpNmYxleX5y-6KvhfznYadg?usp=sharing. Thank you! 
 
 ## Usage
-The input of 
+Executing `code/gene/main.py` evaluates the supervised models, providing fitness metrics such as AUC and accuracy, along with identifying important pathways. Users need to specify the input gene list and the output file name for the fitness results of all genes (AUC and accuracy). Similarly, executing `code/mutation/main.py` generates ARVs and calculates the relevance scores of pathways, averaged across all cell lines. Users should specify the output file name for the ARVs and pathways.
+
+The list below is the options for `code/gene/main.py`.
+
+
+    --input_gene                    path of input gene list (required)
+    --output_performance            path of output fitness results (required)
+    --if_functional                 if functional SNPs are used (optional, default: True)
+    --n_hidden                      number of hidden layers of the neural network (optional, default: 3)
+    --num_epochs                    epochs for training the neural network (optional, default: 100)
+    --learning_rate                 learning rate (optional, default: 0.01)
+    --batch_size                    batch size (optional, default: 128)
+    --alpha                         L2 regularization parameter (optional, default: 0.0001)
+    --AUC_cutoff                    threshold to measure the gene is a driver gene or not (optional, default: 0.6)
+    --Dp_cutoff                     threshold to measure the pathway is important or not (optional, default: 0.1)
+
+Here is an example.
+
+        $ python code/gene/main.py --input_gene "../../dataset/InputGene/3008Gene.csv"\
+                                   --output_performance "output.csv"\
+
+The list below is the options for `code/mutation/main.py`.
+
