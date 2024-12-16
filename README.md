@@ -42,8 +42,24 @@ The list below is the options for `code/gene/main.py`.
 
 Here is an example.
 
-        $ python code/gene/main.py --input_gene "../../dataset/InputGene/3008Gene.csv"\
-                                   --output_performance "output.csv"\
+    $ python code/gene/main.py  --input_gene "../../dataset/InputGene/3008Gene.csv"\
+                                --output_performance "output_performance.csv"\
 
 The list below is the options for `code/mutation/main.py`.
 
+    --fake_SNP_file_name            path of output ARVs (required)
+    --pathway_file_name             path of output relevance scores of pathways (required)
+    --encoded_dim                   the number of ARVs or the dimensions of the latent layer (optional, default: 1024)
+    --n_hidden                      number of hidden layers of the neural network (optional, default: 3)
+    --learning_rate                 learning rate (optional, default: 0.01)
+    --num_epochs                    epochs for training the neural network (optional, default: 100)
+    --batch_size                    batch size (optional, default: 128)
+    --alpha_binomial                penalty parameter for binomial distribution(optional, default: 0.001)
+    --alpha_regularization          penalty parameter for regularization (optional, default: 0.1)
+    --regularization_type           type of regularization (optional, default: 'L2')
+    --epsilon                       parameter for LRP-epsilon (optional, default: 0.01)
+
+Here is an example.
+
+    $ python code/mutation/main.py  --fake_SNP_file_name "output_fake_SNP.csv"\
+                                    --pathway_file_name "output_pathway.csv"\
