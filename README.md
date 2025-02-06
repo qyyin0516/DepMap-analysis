@@ -5,11 +5,11 @@ In this project, we utilized the Cancer Dependency Map (DepMap) to identify pote
 This project corresponds to the following paper: Yin, Q., Chen, L.. Explainable deep learning for identifying cancer driver genes and generating driver-like artificial representative variants based on the Cancer Dependency Map, in preparation.
 
 ## Dependencies
-The models are built with Python 3 (>= 3.9.2) with the following packages:
+The models are built with Python 3 (>= 3.10.16) with the following packages:
 
 * numpy >= 1.21.6
 * pandas >= 1.5.3
-* scipy >= 1.11.4
+* scipy >= 1.11.2
 * keras >= 2.9.0
 * tensorflow >= 2.9.0
 * scikit-learn >= 1.0.2
