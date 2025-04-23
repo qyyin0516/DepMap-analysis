@@ -1,8 +1,8 @@
-# Explainable deep learning for identifying cancer driver genes and generating driver-like artificial representative variants based on the Cancer Dependency Map
+# Explainable deep learning for identifying cancer driver genes based on the Cancer Dependency Map
 
-In this project, we utilized the Cancer Dependency Map (DepMap) to identify potential cancer driver genes and generate artificial representative driver variants. Using DepMap dependency score data, we developed a biologically informed, supervised deep learning model for each frequently mutated gene, leveraging functional SNPs to predict its mutation status. The fitness of the model represents how likely the gene is a cancer driver gene. To generate artificial representative variants (ARVs), we built an explainable autoencoder, guided by the distribution of real driver SNPs. This allowed us to identify important pathways for the dependence profile of a cell line. 
+In this project, we utilized the Cancer Dependency Map (DepMap) to identify potential cancer driver genes and generate artificial representative driver variants. Using DepMap dependency score data, we developed a biologically informed, supervised deep learning model for each frequently mutated gene, leveraging functional SNPs to predict its mutation status. The fitness of the model represents how likely the gene is a cancer driver gene. To generate driver variant representations (DVRs), we built an explainable autoencoder, guided by the distribution of real driver SNPs. This allowed us to identify important pathways for the dependence profile of a cell line. 
 
-This project corresponds to the following paper: Yin, Q., Chen, L.. Explainable deep learning for identifying cancer driver genes and generating driver-like artificial representative variants based on the Cancer Dependency Map, in preparation.
+This project corresponds to the following paper: Yin, Q., Chen, L.. Explainable deep learning for identifying cancer driver genes based on the Cancer Dependency Map, in preparation.
 
 ## Dependencies
 The models are built with Python 3 (>= 3.10.16) with the following packages:
@@ -24,7 +24,7 @@ Clone the github repository and enter DepMap-analysis directory with
 However, the folder `DepMap-analysis/dataset` is stored in Google Drive because of the file size limitations of GitHub. Please download the folder via https://drive.google.com/drive/folders/1CWI-P40QcIpNmYxleX5y-6KvhfznYadg?usp=sharing. Thank you! 
 
 ## Usage
-Executing `code/gene/main.py` evaluates the supervised models, providing fitness metrics such as AUC and accuracy, along with identifying important pathways. Users need to specify the input gene list and the output file name for the fitness results of all genes (AUC and accuracy). Similarly, executing `code/mutation/main.py` generates ARVs and calculates the relevance scores of pathways, averaged across all cell lines. Users should specify the output file name for the ARVs and pathways.
+Executing `code/gene/main.py` evaluates the supervised models (xNNDriver), providing fitness metrics such as AUC and accuracy, along with identifying important pathways. Users need to specify the input gene list and the output file name for the fitness results of all genes (AUC and accuracy). Similarly, executing `code/mutation/main.py` (xAEDriver) generates DVRs and calculates the relevance scores of pathways, averaged across all cell lines. Users should specify the output file name for the DVRs and pathways.
 
 The list below is the options for `code/gene/main.py`.
 
@@ -47,9 +47,9 @@ Here is an example.
 
 The list below is the options for `code/mutation/main.py`.
 
-    --fake_SNP_file_name            path of output ARVs (required)
+    --fake_SNP_file_name            path of output DVRs (required)
     --pathway_file_name             path of output relevance scores of pathways (required)
-    --encoded_dim                   the number of ARVs or the dimensions of the latent layer (optional, default: 1024)
+    --encoded_dim                   the number of DVRs or the dimensions of the latent layer (optional, default: 1024)
     --n_hidden                      number of hidden layers of the neural network (optional, default: 3)
     --learning_rate                 learning rate (optional, default: 0.01)
     --num_epochs                    epochs for training the neural network (optional, default: 1000)
