@@ -47,7 +47,7 @@ Here is an example.
 
 The list below is the options for `code/mutation/main.py`.
 
-    --dvr_file_name            path to save the output CSV file for generated DVRs (required)
+    --dvr_file_name                 path to save the output CSV file for generated DVRs (required)
     --pathway_file_name             path to save the output CSV file with pathway relevance scores (required)
     --encoded_dim                   dimension of the encoded layer (DVR) (optional, default: 1024)
     --n_hidden                      number of hidden layers in the neural network (optional, default: 3)
