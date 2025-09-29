@@ -24,21 +24,21 @@ Clone the github repository and enter DepMap-analysis directory with
 However, the folder `DepMap-analysis/dataset` is stored in Google Drive because of the file size limitations of GitHub. Please download the folder via https://drive.google.com/drive/folders/1CWI-P40QcIpNmYxleX5y-6KvhfznYadg?usp=sharing. Thank you! 
 
 ## Usage
-Executing `code/gene/main.py` evaluates the supervised models (xNNDriver), providing fitness metrics such as AUC and accuracy, along with identifying important pathways. Users need to specify the input gene list and the output file name for the fitness results of all genes (AUC and accuracy). Similarly, executing `code/mutation/main.py` (xAEDriver) generates DVRs and calculates the relevance scores of pathways, averaged across all cell lines. Users should specify the output file name for the DVRs and pathways.
+Executing `code/gene/main.py` evaluates the supervised models (xNNDriver), providing driver potential scores along with identifying important pathways. Users need to specify the input gene list and the output file name for the fitness results of all genes. Similarly, executing `code/mutation/main.py` (xAEDriver) generates DVRs and calculates the relevance scores of pathways, averaged across all cell lines. Users should specify the output file name for the DVRs and pathways.
 
 The list below is the options for `code/gene/main.py`.
 
 
-    --input_gene                    path of input gene list (required)
-    --output_performance            path of output fitness results (required)
-    --if_functional                 if functional SNPs are used (optional, default: True)
-    --n_hidden                      number of hidden layers of the neural network (optional, default: 3)
-    --learning_rate                 learning rate (optional, default: 0.01)
-    --batch_size                    batch size (optional, default: 128)
-    --num_epochs                    epochs for training the neural network (optional, default: 100)
-    --alpha                         L2 regularization parameter (optional, default: 0.0001)
-    --AUC_cutoff                    threshold to measure the gene is a driver gene or not (optional, default: 0.6)
-    --Dp_cutoff                     threshold to measure the pathway is important or not (optional, default: 0.1)
+    --input_gene                    path to the input CSV file containing the list of genes (required)
+    --output_performance            path to save the output CSV file with model performance (required)
+    --if_functional                 if this flag is set, filter mutations to include only functional ones based on COSMIC and ClinVar (optional, default: True)
+    --n_hidden                      number of hidden layers in the neural network (optional, default: 3)
+    --learning_rate                 learning rate for the Adam optimizer (optional, default: 0.01)
+    --batch_size                    batch size for mini-batch gradient descent (optional, default: 128)
+    --num_epochs                    number of training epochs (optional, default: 100)
+    --gamma                         L2 regularization parameter (optional, default: 0.0001)
+    --score_cutoff                  driver potential score threshold for saving pathway importance results (optional, default: 0.55)
+    --Dp_cutoff                     Dp cutoff for identifying important pathways (optional, default: 0.1)
 
 Here is an example.
 
@@ -47,16 +47,16 @@ Here is an example.
 
 The list below is the options for `code/mutation/main.py`.
 
-    --fake_SNP_file_name            path of output DVRs (required)
-    --pathway_file_name             path of output relevance scores of pathways (required)
-    --encoded_dim                   the number of DVRs or the dimensions of the latent layer (optional, default: 1024)
-    --n_hidden                      number of hidden layers of the neural network (optional, default: 3)
-    --learning_rate                 learning rate (optional, default: 0.01)
-    --num_epochs                    epochs for training the neural network (optional, default: 1000)
-    --alpha_binomial                penalty parameter for binomial distribution (optional, default: 0.001)
-    --alpha_regularization          penalty parameter for regularization (optional, default: 0.1)
-    --regularization_type           type of regularization (optional, default: 'L2')
-    --epsilon                       parameter for LRP-epsilon (optional, default: 0.01)
+    --dvr_file_name            path to save the output CSV file for generated DVRs (required)
+    --pathway_file_name             path to save the output CSV file with pathway relevance scores (required)
+    --encoded_dim                   dimension of the encoded layer (DVR) (optional, default: 1024)
+    --n_hidden                      number of hidden layers in the neural network (optional, default: 3)
+    --learning_rate                 learning rate for the Adam optimizer (optional, default: 0.01)
+    --num_epochs                    maximum number of training epochs (optional, default: 1000)
+    --alpha_binomial                weight for the binomial distribution loss component in the autoencoder (optional, default: 0.001)
+    --alpha_regularization          weight for the regularization term (optional, default: 0.1)
+    --regularization_type           type of regularization to apply ('L1' or 'L2') (optional, default: 'L2')
+    --epsilon                       a small constant for the relevance calculation to ensure numerical stability (optional, default: 0.01)
 
 Here is an example.
 
