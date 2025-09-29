@@ -6,12 +6,19 @@ from sklearn.preprocessing import label_binarize
 
 
 def one_hot_coding(train_y):
+    """
+    Converts a single-column DataFrame of labels into a one-hot encoded NumPy array.
+    """
     Y_train_df = pd.get_dummies(train_y.iloc[:, 0])
     Y_train = np.array(Y_train_df).T
     return Y_train
 
 
 def softmax(x):
+    """
+    Computes the softmax activation function for a given input array.
+    This is used to convert raw output scores (logits) into probabilities.
+    """
     x = np.asarray(x)
     x_col_max = x.max(axis=0)
     x_col_max = x_col_max.reshape([1,x.shape[1]])
@@ -23,6 +30,9 @@ def softmax(x):
 
 
 def get_predictions(output_train, output_test, output_layer):
+    """
+    Calculates class predictions from the softmax output of a specific layer.
+    """
     output_train = softmax(output_train[output_layer])
     output_test = softmax(output_test[output_layer])
     y_train_pred = np.zeros(output_train.shape[1])
@@ -34,7 +44,11 @@ def get_predictions(output_train, output_test, output_layer):
     return y_train_pred, y_test_pred
     
     
-def manual_auc(y_true, y_pred):
+def get_driver_potential_score(y_true, y_pred):
+    """
+    Calculates the average Area Under the ROC Curve (AUC) across all classes.
+    This serves as the driver potential score for a gene model.
+    """
     classes = list(pd.DataFrame(y_true).iloc[:, 0].unique())
     y1 = label_binarize(y_true, classes=classes)
     y2 = label_binarize(y_pred, classes=classes)
@@ -52,6 +66,10 @@ def manual_auc(y_true, y_pred):
 
 
 def get_pathway_importance(y_train, activation_output, thr=0.1):
+    """
+    Identifies and ranks important pathways based on the difference in their 
+    average activation values between two classes (e.g., class 0 and 1).
+    """
     pathway_importance = {}
     for output_layer in range(2, len(activation_output) + 2):
         pathway_importance_layer = {}
